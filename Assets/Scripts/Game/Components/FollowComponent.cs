@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Components
 {
-    public class FollowComponent : ICEcsComponent
+    public class FollowComponent : IEcsComponent
     {
         public Transform target = null;
         private int entityId = -1;

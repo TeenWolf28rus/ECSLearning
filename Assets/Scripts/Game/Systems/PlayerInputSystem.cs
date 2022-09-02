@@ -1,4 +1,4 @@
-﻿using CustomEcsBase.Filter;
+﻿using CustomEcsBase.Filter.Filters.ComponentsFilter;
 using CustomEcsBase.Systems.EcsSystem;
 using CustomEcsBase.World;
 using Game.Components;
@@ -6,15 +6,11 @@ using UnityEngine;
 
 namespace Game.Systems
 {
-    public class PlayerInputSystem : ICEcsRunSystem
+    public class PlayerInputSystem : IEcsRunSystem
     {
-        private CEcsWorld world;
-        private CEcsComponentsFilterOne<InputDataComponent> componentFiler;
+        private EcsWorld world;
+        private EcsComponentsFilterTwo<InputDataComponent, PlayerTagComponent> componentFiler;
 
-        public void InjectionCompleted()
-        {
-            componentFiler = new CEcsComponentsFilterOne<InputDataComponent>(world);
-        }
 
         public void Run()
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Game.Data
 {
     [CreateAssetMenu(fileName = nameof(EnemySharedData), menuName = "Game/SharedData/Enemy/" + nameof(EnemySharedData))]
-    public class EnemySharedData : CEcsSharedData
+    public class EnemySharedData : EcsSharedData
     {
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private float forwardMoveSpeed = 8f;

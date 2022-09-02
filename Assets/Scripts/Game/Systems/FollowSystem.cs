@@ -1,4 +1,4 @@
-﻿using CustomEcsBase.Filter.ComponentsFilter;
+﻿using CustomEcsBase.Filter.Filters.ComponentsFilter;
 using CustomEcsBase.Systems.EcsSystem;
 using CustomEcsBase.World;
 using Game.Components;
@@ -6,19 +6,14 @@ using UnityEngine;
 
 namespace Game.Systems
 {
-    public class FollowSystem : ICEcsRunSystem
+    public class FollowSystem : IEcsRunSystem
     {
         private const float RICH_DISTANCE = 1f;
         
-        private CEcsWorld world;
+        private EcsWorld world;
 
-        private CEcsComponentsFilterThree<FollowComponent, InputDataComponent, MovableComponent> componentsFilter;
+        private EcsComponentsFilterThree<FollowComponent, InputDataComponent, MovableComponent> componentsFilter;
 
-        public void InjectionCompleted()
-        {
-            componentsFilter =
-                new CEcsComponentsFilterThree<FollowComponent, InputDataComponent, MovableComponent>(world);
-        }
 
         public void Run()
         {
@@ -36,7 +31,7 @@ namespace Game.Systems
                 if (direction.sqrMagnitude < RICH_DISTANCE)
                 {
                     input.direction = Vector2.zero;
-                    return;
+                    continue;
                 }
 
                 var normalizedDirection = direction.normalized;

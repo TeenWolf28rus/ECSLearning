@@ -1,4 +1,4 @@
-﻿using CustomEcsBase.Filter.DataFilter;
+﻿using CustomEcsBase.Filter.Filters.DataFilter;
 using CustomEcsBase.Systems.EcsSystem;
 using CustomEcsBase.World;
 using Game.Components;
@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace Game.Systems
 {
-    public class GameInitSystem : ICEcsInitSystem
+    public class GameInitSystem : IEcsInitSystem
     {
-        private CEcsWorld world = null;
+        private EcsWorld world = null;
 
-        private CEcsSharedDataFilterTwo<PlayerSharedData, EnemySharedData> dataFilter;
+        private EcsSharedDataFilterTwo<PlayerSharedData, EnemySharedData> dataFilter;
 
         public void Init()
         {
@@ -27,6 +27,7 @@ namespace Game.Systems
             var player = world.GetNewEntity();
             var movableComponent = player.GetComponent<MovableComponent>();
             var inputComponent = player.GetComponent<InputDataComponent>();
+            var playerTagComponent = player.GetComponent<PlayerTagComponent>();
 
             var playerData = dataFilter.Get1;
             var spawnedPlayerPrefab =
@@ -57,12 +58,6 @@ namespace Game.Systems
             movableComponent.forwardSpeed = enemyData.ForwardMoveSpeed;
             movableComponent.sideSpeed = enemyData.SideMoveSpeed;
             followComponent.target = target;
-        }
-
-
-        public void InjectionCompleted()
-        {
-            dataFilter = new CEcsSharedDataFilterTwo<PlayerSharedData, EnemySharedData>(world);
         }
     }
 }

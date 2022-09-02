@@ -1,4 +1,4 @@
-﻿using CustomEcsBase.Filter.ComponentsFilter;
+﻿using CustomEcsBase.Filter.Filters.ComponentsFilter;
 using CustomEcsBase.Systems.EcsSystem;
 using CustomEcsBase.World;
 using Game.Components;
@@ -6,15 +6,10 @@ using UnityEngine;
 
 namespace Game.Systems
 {
-    public class PlayerMoveSystem : ICEcsRunSystem
+    public class PlayerMoveSystem : IEcsRunSystem
     {
-        private CEcsWorld world;
-        private CEcsComponentsFilterTwo<MovableComponent, InputDataComponent> componentFiler;
-
-        public void InjectionCompleted()
-        {
-            componentFiler = new CEcsComponentsFilterTwo<MovableComponent, InputDataComponent>(world);
-        }
+        private EcsWorld world;
+        private EcsComponentsFilterTwo<MovableComponent, InputDataComponent> componentFiler;
 
         public void Run()
         {

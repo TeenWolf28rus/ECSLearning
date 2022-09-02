@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Components
 {
-    public class InputDataComponent : ICEcsComponent
+    public class InputDataComponent : IEcsComponent
     {
         public Vector2 direction = Vector2.zero;
 

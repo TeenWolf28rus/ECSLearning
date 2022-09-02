@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Components
 {
-    public class MovableComponent : ICEcsComponent
+    public class MovableComponent : IEcsComponent
     {
         public Transform transform =  null;
         public float forwardSpeed = 0f;

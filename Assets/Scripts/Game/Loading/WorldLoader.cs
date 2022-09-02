@@ -8,15 +8,15 @@ namespace Game.Loading
 {
     public class WorldLoader : MonoBehaviour
     {
-        [SerializeField] private CEcsSharedDataContainer sharedDataContainer;
+        [SerializeField] private EcsSharedDataContainer sharedDataContainer;
 
-        private CEcsWorld world;
-        private CEcsSystems systems;
+        private EcsWorld world;
+        private EcsSystems systems;
 
         private void Start()
         {
-            world = new CEcsWorld(sharedDataContainer);
-            systems = new CEcsSystems(world);
+            world = new EcsWorld(sharedDataContainer);
+            systems = new EcsSystems(world);
 
             systems?.Add(new GameInitSystem());
             systems?.Add(new PlayerInputSystem());
@@ -29,6 +29,11 @@ namespace Game.Loading
         private void Update()
         {
             systems?.Run();
+        }
+
+        private void FixedUpdate()
+        {
+            systems?.FixedRun();
         }
 
         private void OnDestroy()

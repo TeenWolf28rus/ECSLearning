@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Game.Data
 {
     [CreateAssetMenu(fileName = nameof(PlayerSharedData), menuName = "Game/SharedData/Player/" + nameof(PlayerSharedData))]
-    public class PlayerSharedData : CEcsSharedData
+    public class PlayerSharedData : EcsSharedData
     {
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private float forwardMoveSpeed = 10f;
